@@ -146,85 +146,6 @@ document.addEventListener("DOMContentLoaded", () => {
         toggleSection(reports);
         initializeChart(productsData); // Call the function from reports.js
     });
-
-    document.addEventListener("DOMContentLoaded", () => {
-        const billingProductSearch = document.getElementById("billingProductSearch");
-        const billTableBody = document.getElementById("billTableBody");
-        const billingTotalEl = document.getElementById("billingTotal");
-        const addToBillBtn = document.getElementById("addToBillBtn");
-        const finalizeBillBtn = document.getElementById("finalizeBillBtn");
-    
-        let billItems = [];
-    
-        // Add Product to Bill
-        addToBillBtn.addEventListener("click", () => {
-            const productName = billingProductSearch.value.trim();
-            if (!productName) return alert("Enter a product name to add to the bill.");
-            
-            const productRow = Array.from(productTableBody.querySelectorAll("tr")).find(
-                row => row.children[1].textContent === productName
-            );
-    
-            if (!productRow) return alert("Product not found!");
-    
-            const productPrice = parseFloat(productRow.children[4].textContent.replace("$", ""));
-            addBillItem(productName, 1, productPrice);
-        });
-    
-        // Add Bill Item
-        const addBillItem = (name, quantity, price) => {
-            const existingItem = billItems.find(item => item.name === name);
-            if (existingItem) {
-                existingItem.quantity += quantity;
-            } else {
-                billItems.push({ name, quantity, price });
-            }
-            renderBillItems();
-            updateBillingTotal();
-        };
-    
-        // Render Bill Items
-        const renderBillItems = () => {
-            billTableBody.innerHTML = billItems
-                .map(
-                    item => `
-                    <tr>
-                        <td>${item.name}</td>
-                        <td>${item.quantity}</td>
-                        <td>$${item.price.toFixed(2)}</td>
-                        <td>$${(item.quantity * item.price).toFixed(2)}</td>
-                        <td>
-                            <button class="btn" onclick="removeBillItem('${item.name}')">Remove</button>
-                        </td>
-                    </tr>
-                `
-                )
-                .join("");
-        };
-    
-        // Update Billing Total
-        const updateBillingTotal = () => {
-            const total = billItems.reduce((sum, item) => sum + item.quantity * item.price, 0);
-            billingTotalEl.textContent = total.toFixed(2);
-        };
-    
-        // Remove Bill Item
-        window.removeBillItem = (name) => {
-            billItems = billItems.filter(item => item.name !== name);
-            renderBillItems();
-            updateBillingTotal();
-        };
-    
-        // Finalize Bill
-        finalizeBillBtn.addEventListener("click", () => {
-            if (!billItems.length) return alert("No items in the bill.");
-            alert(`Bill finalized! Total: $${billingTotalEl.textContent}`);
-            billItems = [];
-            renderBillItems();
-            updateBillingTotal();
-        });
-    });
-    
     
     // Navigation
     const links = {
@@ -232,10 +153,6 @@ document.addEventListener("DOMContentLoaded", () => {
         productsLink: products,
         reportsLink: reports,
     };
-
-    const billing = document.getElementById("billing");
-       links.billingLink = billing;
-
 
     Object.keys(links).forEach(linkId => {
         document.getElementById(linkId).addEventListener("click", (e) => {

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventory Management System</title>
     <link rel="stylesheet" href="style.css">
+    
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://unpkg.com/html5-qrcode/minified/html5-qrcode.min.js"></script>
    
@@ -14,9 +15,10 @@
         <h1>Inventory Management System</h1>
     </header>
     <nav>
-        <a href="#" id="dashboardLink">Dashboard</a>
-        <a href="#" id="productsLink">Products</a>
-        <a href="#" id="reportsLink">Reports</a>
+        
+        <a href="Products.html" id="productsLink">Products</a>
+        <a href="Billing.html" id="productsLink">Billing</a>
+        <a href="Reports.html" id="reportsLink">Reports</a>
     </nav>
 
     <div class="container">
@@ -98,38 +100,6 @@
             </form>
         </div>
     </div>
-
-    <!-- Billing Section -->
-<div id="billing" class="section hidden">
-    <h1>Product Billing</h1>
-    <div class="controls">
-        <input type="text" id="billingProductSearch" placeholder="Search Products">
-        <button class="btn" id="addToBillBtn">Add to Bill</button>
-    </div>
-    <div class="table-container">
-        <h2>Bill Items</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Product</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Total</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="billTableBody">
-                <!-- Dynamic rows for billing items -->
-            </tbody>
-        </table>
-    </div>
-    <div class="summary">
-        <h2>Total: $<span id="billingTotal">0.00</span></h2>
-        <button class="btn" id="finalizeBillBtn">Finalize Bill</button>
-    </div>
-</div>
-     <a href="#" id="billingLink">Billing</a>
-
 
     <script src="script.js" defer></script>
 </body>

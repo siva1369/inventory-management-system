@@ -13,12 +13,6 @@ body {
     margin: 0;
     padding: 0;
 }
-.summary {
-    margin-top: 1.5rem;
-    text-align: right;
-    font-size: 1.5rem;
-    font-weight: bold;
-}
 
 /* Header Styling */
 header {
